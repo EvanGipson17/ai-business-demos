@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Demo for Pacesetter Properties — Austin TX</title>
+<style>
+  :root {
+    --navy: #0a1f44;
+    --navy-dark: #061532;
+    --navy-light: #1a3a7a;
+    --accent: #d4af37;
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --text: #1a2238;
+    --muted: #5a6785;
+    --border: #e3e8f2;
+    --success: #1f7a3a;
+    --danger: #a33a3a;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .banner {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    color: #fff;
+    text-align: center;
+    padding: 14px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    border-bottom: 3px solid var(--accent);
+  }
+
+  .banner strong { color: var(--accent); }
+
+  header.hero {
+    background: var(--navy);
+    color: #fff;
+    padding: 40px 20px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(212,175,55,0.12), transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(255,255,255,0.06), transparent 40%);
+    pointer-events: none;
+  }
+
+  header.hero .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    position: relative;
+  }
+
+  header.hero .logo .dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent);
+  }
+
+  header.hero h1 {
+    font-size: 32px;
+    margin: 0 0 10px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    position: relative;
+  }
+
+  header.hero p {
+    font-size: 16px;
+    margin: 0 auto;
+    max-width: 560px;
+    color: rgba(255,255,255,0.85);
+    position: relative;
+  }
+
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 28px 16px 12px;
+  }
+
+  .section {
+    background: var(--card);
+    border-radius: 14px;
+    box-shadow: 0 4px 24px rgba(10,31,68,0.06);
+    border: 1px solid var(--border);
+    padding: 26px 22px;
+    margin-bottom: 22px;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .section-number {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    font-size: 18px;
+  }
+
+  .section-head h2 {
+    font-size: 20px;
+    margin: 0;
+    color: var(--navy);
+    font-weight: 800;
+    letter-spacing: -0.2px;
+  }
+
+  .section-head .sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .compare {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 720px) {
+    .compare { grid-template-columns: 1fr 1fr; }
+    header.hero h1 { font-size: 40px; }
+  }
+
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    background: #fcfcfd;
+  }
+
+  .card .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 10px;
+  }
+
+  .tag.before { background: #fce8e8; color: var(--danger); }
+  .tag.after { background: #e4f3e9; color: var(--success); }
+
+  .card.after {
+    background: linear-gradient(180deg, #ffffff 0%, #f6f9ff 100%);
+    border-color: #c9d6ef;
+    box-shadow: 0 2px 10px rgba(10,31,68,0.06);
+    position: relative;
+  }
+
+  .card p {
+    margin: 0 0 10px;
+    font-size: 14.5px;
+    color: #2a3450;
+  }
+
+  .property-meta {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+  }
+
+  .stats {
+    display: flex;
+    gap: 14px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    background: var(--navy);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .stat.accent { background: var(--accent); color: var(--navy-dark); }
+
+  /* Email timeline */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .email {
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--navy);
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .email-header {
+    background: #f0f3fa;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .email-day {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--navy);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 11px;
+    border-radius: 999px;
+    letter-spacing: 0.5px;
+  }
+
+  .email-day::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  .email-subject {
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 14px;
+    flex: 1;
+    min-width: 180px;
+  }
+
+  .email-body {
+    padding: 16px 18px;
+    font-size: 14px;
+    color: #2a3450;
+  }
+
+  .email-body p { margin: 0 0 10px; }
+  .email-body p:last-child { margin-bottom: 0; }
+  .email-body .sig { color: var(--muted); font-size: 13px; font-style: italic; }
+
+  /* Social captions */
+  .caption-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: 1fr;
+  }
+
+  .caption {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
+  }
+
+  .caption-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .platform {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+
+  .platform .chip {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+  }
+  .platform.fb .chip { background: #1877f2; border-radius: 50%; }
+
+  .copy-btn {
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .caption-text {
+    font-size: 14px;
+    color: #2a3450;
+    white-space: pre-wrap;
+    line-height: 1.6;
+  }
+
+  .hashtags {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--navy-light);
+    font-weight: 600;
+  }
+
+  /* Value callout */
+  .value {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    color: #fff;
+    border-radius: 14px;
+    padding: 24px 20px;
+    text-align: center;
+    margin: 28px 16px;
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid rgba(212,175,55,0.4);
+  }
+
+  .value h3 {
+    margin: 0 0 14px;
+    font-size: 20px;
+    color: var(--accent);
+    letter-spacing: -0.2px;
+  }
+
+  .value-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .value-stat strong {
+    display: block;
+    font-size: 24px;
+    color: #fff;
+    font-weight: 800;
+  }
+
+  .value-stat span {
+    font-size: 11px;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+
+  footer {
+    background: var(--navy-dark);
+    color: #fff;
+    padding: 30px 20px 36px;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  footer .ai-mark {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  footer h4 {
+    margin: 0 0 6px;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  footer p {
+    margin: 0;
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+  }
+
+  .divider {
+    width: 40px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+    margin: 14px auto;
+  }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  Built specifically for <strong>Pacesetter Properties</strong> &mdash; Austin TX
+</div>
+
+<header class="hero">
+  <div class="logo"><span class="dot"></span> AI Automation Demo</div>
+  <h1>Save Hours. Close More Homes.</h1>
+  <p>Three AI tools working for your agency the moment a new listing goes live &mdash; written, drafted, and ready before you finish your coffee.</p>
+</header>
+
+<main>
+
+  <!-- SECTION 1: AI Listing Description -->
+  <section class="section">
+    <div class="section-head">
+      <div class="section-number">1</div>
+      <div>
+        <h2>AI-Generated Listing Description</h2>
+        <div class="sub">From bullet points to buyer-ready copy in under 10 seconds.</div>
+      </div>
+    </div>
+
+    <div class="property-meta">4802 Mesa Ridge Dr &middot; Northwest Hills, Austin TX &middot; 4BR / 3BA / 2,840 sqft &middot; $849,000</div>
+
+    <div class="compare">
+      <div class="card">
+        <span class="tag before">Before &mdash; Generic MLS Draft</span>
+        <p>Nice 4 bedroom 3 bath home in Northwest Hills. 2,840 sqft. Updated kitchen, big backyard, close to shops and schools. 2 car garage. Move in ready.</p>
+      </div>
+      <div class="card after">
+        <span class="tag after">After &mdash; AI Enhanced</span>
+        <p>Tucked into the tree-lined streets of Northwest Hills, this beautifully updated 4-bedroom retreat blends Austin character with modern comfort. A light-drenched chef&rsquo;s kitchen with quartz counters opens to a spacious living area &mdash; perfect for entertaining or quiet Hill Country evenings.</p>
+        <p>Step outside to a private backyard shaded by mature oaks, ideal for weekend gatherings or morning coffee. Minutes from The Domain, top-rated schools, and downtown Austin. A rare opportunity to own a turn-key home in one of the city&rsquo;s most sought-after neighborhoods.</p>
+        <div class="stats">
+          <span class="stat">Generated in 8 seconds</span>
+          <span class="stat accent">+38% avg. click rate</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: Automated Email Sequence -->
+  <section class="section">
+    <div class="section-head">
+      <div class="section-number">2</div>
+      <div>
+        <h2>Automated Client Follow-Up Emails</h2>
+        <div class="sub">Every inquiry gets a professional, personalized touch &mdash; automatically.</div>
+      </div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="email">
+        <div class="email-header">
+          <span class="email-day">Day 1 &middot; Instant</span>
+          <span class="email-subject">Thanks for your interest in 4802 Mesa Ridge Dr</span>
+        </div>
+        <div class="email-body">
+          <p>Hi Sarah,</p>
+          <p>Thank you for reaching out about <strong>4802 Mesa Ridge Dr</strong>! It&rsquo;s one of my favorite listings right now &mdash; the light in that kitchen is unreal in person.</p>
+          <p>I&rsquo;ve attached the full property details and a floor plan. I&rsquo;d love to get you scheduled for a private showing this week. Do Thursday evening or Saturday morning work better for you?</p>
+          <p class="sig">&mdash; The Pacesetter Properties Team<br />8650 Spicewood Springs Rd, Suite 202 &middot; Austin TX</p>
+        </div>
+      </div>
+
+      <div class="email">
+        <div class="email-header">
+          <span class="email-day">Day 3 &middot; Follow-Up</span>
+          <span class="email-subject">A few homes you might love in Northwest Hills</span>
+        </div>
+        <div class="email-body">
+          <p>Hi Sarah,</p>
+          <p>Just following up &mdash; I know home shopping in Austin moves fast right now. In case Mesa Ridge isn&rsquo;t quite the fit, I hand-picked three similar homes in the <strong>Northwest Hills</strong> area that just hit the market in your price range.</p>
+          <p>Want me to send photos and schedule a quick tour? Even a 15-minute walk-through can help narrow things down.</p>
+          <p>Happy to answer any questions about financing, schools, or the neighborhood &mdash; just reply here.</p>
+          <p class="sig">&mdash; The Pacesetter Properties Team</p>
+        </div>
+      </div>
+
+      <div class="email">
+        <div class="email-header">
+          <span class="email-day">Day 7 &middot; Value Touch</span>
+          <span class="email-subject">Austin market update &mdash; what buyers need to know this month</span>
+        </div>
+        <div class="email-body">
+          <p>Hi Sarah,</p>
+          <p>A quick note from the Austin real estate world: inventory in Northwest Hills is up <strong>12%</strong> this month, and well-priced homes are still moving in under two weeks. It&rsquo;s a great window for serious buyers.</p>
+          <p>If you&rsquo;re still exploring, I&rsquo;d be glad to put together a free, no-pressure buyer&rsquo;s roadmap tailored to your budget and timeline &mdash; it&rsquo;s something we do for every client and it tends to save a lot of guesswork.</p>
+          <p>Whenever you&rsquo;re ready, I&rsquo;m here.</p>
+          <p class="sig">&mdash; The Pacesetter Properties Team</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 3: AI Social Captions -->
+  <section class="section">
+    <div class="section-head">
+      <div class="section-number">3</div>
+      <div>
+        <h2>AI-Generated Social Media Captions</h2>
+        <div class="sub">Three ready-to-post captions per listing &mdash; written in your brand voice.</div>
+      </div>
+    </div>
+
+    <div class="caption-grid">
+
+      <div class="caption">
+        <div class="caption-head">
+          <span class="platform"><span class="chip"></span> Instagram &middot; Launch Post</span>
+          <button class="copy-btn" onclick="alert('Copied to clipboard ✓')">Copy</button>
+        </div>
+        <div class="caption-text">JUST LISTED in Northwest Hills ✨
+
+Tucked under Austin oaks and flooded with natural light &mdash; this 4-bed, 3-bath beauty is everything you&rsquo;ve been waiting for. Chef&rsquo;s kitchen. Private backyard. Minutes from The Domain.
+
+Tap the link in bio for the full tour 🏡</div>
+        <div class="hashtags">#AustinRealEstate #NorthwestHills #JustListed #AustinHomes #PacesetterProperties #ATX</div>
+      </div>
+
+      <div class="caption">
+        <div class="caption-head">
+          <span class="platform fb"><span class="chip"></span> Facebook &middot; Storytelling Post</span>
+          <button class="copy-btn" onclick="alert('Copied to clipboard ✓')">Copy</button>
+        </div>
+        <div class="caption-text">Imagine morning coffee on a shaded back patio, a kitchen where everyone naturally gathers, and a neighborhood where your kids can actually walk to school.
+
+That&rsquo;s 4802 Mesa Ridge Dr &mdash; and it just hit the market.
+
+4 bedrooms &middot; 3 baths &middot; 2,840 sqft &middot; $849,000
+
+Message us to schedule a private showing this weekend. Homes like this don&rsquo;t stay available long in Northwest Hills.</div>
+        <div class="hashtags">#AustinTX #HomeForSale #NorthwestHills #RealEstate</div>
+      </div>
+
+      <div class="caption">
+        <div class="caption-head">
+          <span class="platform"><span class="chip"></span> Instagram &middot; Open House</span>
+          <button class="copy-btn" onclick="alert('Copied to clipboard ✓')">Copy</button>
+        </div>
+        <div class="caption-text">OPEN HOUSE this Saturday 🗓️ 1&ndash;4 PM
+
+Come see why Northwest Hills buyers are falling in love with this one. Bring your questions, bring your family, bring your realtor &mdash; we&rsquo;ll have cold drinks and a killer view of those oak trees waiting.
+
+📍 4802 Mesa Ridge Dr, Austin TX</div>
+        <div class="hashtags">#OpenHouse #AustinRealtor #AustinLiving #JustListed #PacesetterProperties</div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<div class="value">
+  <h3>What This Means for Pacesetter Properties</h3>
+  <div class="value-stats">
+    <div class="value-stat"><strong>6+ hrs</strong><span>Saved per listing</span></div>
+    <div class="value-stat"><strong>24/7</strong><span>Lead follow-up</span></div>
+    <div class="value-stat"><strong>0</strong><span>Leads slipping through</span></div>
+  </div>
+</div>
+
+<footer>
+  <div class="ai-mark">&#9679; Powered by AI</div>
+  <h4>Built by [Your Name]</h4>
+  <div class="divider"></div>
+  <p>Custom AI automation for small businesses in Austin, TX</p>
+</footer>
+
+</body>
+</html>

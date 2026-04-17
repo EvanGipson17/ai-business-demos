@@ -454,6 +454,198 @@
     position: relative;
   }
 
+  /* OWN IT OUTRIGHT SECTION */
+  .own-section {
+    margin: 56px auto 20px;
+    padding: 0 10px;
+    text-align: center;
+  }
+
+  .own-card {
+    max-width: 720px;
+    margin: 18px auto 14px;
+    background:
+      linear-gradient(135deg, #f3cf5c 0%, #d4af37 45%, #b5932a 100%);
+    border-radius: 20px;
+    padding: 40px 34px 34px;
+    text-align: left;
+    color: var(--navy-dark);
+    position: relative;
+    box-shadow:
+      0 20px 50px rgba(212,175,55,0.35),
+      0 2px 0 rgba(255,255,255,0.4) inset,
+      0 -2px 0 rgba(0,0,0,0.08) inset;
+    border: 1px solid rgba(255,255,255,0.5);
+    overflow: hidden;
+  }
+
+  .own-card::before {
+    content: "";
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(255,255,255,0.5), transparent 65%);
+    pointer-events: none;
+  }
+
+  .own-card::after {
+    content: "";
+    position: absolute;
+    bottom: -80px;
+    left: -40px;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(10,31,68,0.12), transparent 65%);
+    pointer-events: none;
+  }
+
+  .own-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--navy-dark);
+    color: var(--gold-light);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border-radius: 999px;
+    white-space: nowrap;
+    box-shadow: 0 6px 16px rgba(10,31,68,0.35);
+    border: 1px solid rgba(212,175,55,0.6);
+  }
+
+  .own-header {
+    text-align: center;
+    position: relative;
+    padding-bottom: 22px;
+    border-bottom: 1px solid rgba(10,31,68,0.18);
+    margin-bottom: 24px;
+  }
+
+  .own-eyebrow {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: var(--navy-dark);
+    opacity: 0.75;
+    margin-bottom: 8px;
+  }
+
+  .own-price {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .own-price .amount {
+    font-size: 56px;
+    font-weight: 800;
+    color: var(--navy-dark);
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  .own-price .per {
+    font-size: 15px;
+    color: var(--navy);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .own-promise {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--navy-dark);
+    font-style: italic;
+    letter-spacing: -0.2px;
+  }
+
+  .own-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 28px;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  @media (min-width: 620px) {
+    .own-list { grid-template-columns: 1fr 1fr; gap: 4px 28px; }
+  }
+
+  .own-list li {
+    position: relative;
+    padding: 9px 0 9px 32px;
+    font-size: 14.5px;
+    color: var(--navy-dark);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .own-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--navy-dark);
+    box-shadow: 0 2px 6px rgba(10,31,68,0.25);
+  }
+  .own-list li::after {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 14px;
+    width: 6px;
+    height: 10px;
+    border: solid var(--gold-light);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .own-cta {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: var(--navy-dark);
+    color: var(--gold-light);
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: 1px solid rgba(212,175,55,0.5);
+    position: relative;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .own-cta:hover {
+    background: var(--navy);
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
+
+  .own-note {
+    max-width: 620px;
+    margin: 16px auto 0;
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.55;
+  }
+
+  .own-note strong { color: var(--navy); font-style: normal; font-weight: 700; }
+
   /* AI TOOLS SECTION */
   .tools-section {
     margin: 60px 0 10px;
@@ -661,6 +853,37 @@
     </div>
 
   </div>
+
+  <!-- OWN IT OUTRIGHT -->
+  <section class="own-section">
+    <h2 class="section-title">Prefer to Own It Outright?</h2>
+    <p class="section-kicker">One-time setup, no monthly commitment.</p>
+
+    <div class="own-card">
+      <div class="own-badge">One-Time Investment</div>
+      <div class="own-header">
+        <div class="own-eyebrow">One-Time Setup</div>
+        <div class="own-price">
+          <span class="amount">$1,500</span>
+          <span class="per">One Payment</span>
+        </div>
+        <p class="own-promise">&ldquo;Everything installed. Nothing left to figure out.&rdquo;</p>
+      </div>
+
+      <ul class="own-list">
+        <li>OpenClaw installed and fully configured on your computer</li>
+        <li>All AI tools set up, connected, and tested &mdash; Zapier, Canva AI, REimagineHome, Calendly AI, Claude AI</li>
+        <li>Custom personal hub page built so every tool is one tap away</li>
+        <li>2-hour in-person training session at your office in Austin, TX</li>
+        <li>30 days of email and text support after installation</li>
+        <li>Everything explained in plain English &mdash; no tech knowledge required</li>
+      </ul>
+
+      <a href="#contact" class="own-cta">Claim Your Setup</a>
+    </div>
+
+    <p class="own-note">Want ongoing management after your setup? <strong>Roll into the MAX plan at $700/month anytime.</strong></p>
+  </section>
 
   <!-- AI TOOLS -->
   <section class="tools-section">

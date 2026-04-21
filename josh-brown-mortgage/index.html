@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Demo for Josh Brown Mortgage Team — Austin TX</title>
+<style>
+  :root {
+    --navy: #0a1f44;
+    --navy-dark: #061532;
+    --navy-light: #1a3a7a;
+    --accent: #d4af37;
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --text: #1a2238;
+    --muted: #5a6785;
+    --border: #e3e8f2;
+    --success: #1f7a3a;
+    --danger: #a33a3a;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  .banner { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); color: #fff; text-align: center; padding: 14px 16px; font-size: 14px; font-weight: 600; letter-spacing: 0.3px; border-bottom: 3px solid var(--accent); }
+  .banner strong { color: var(--accent); }
+  header.hero { background: var(--navy); color: #fff; padding: 40px 20px 48px; text-align: center; position: relative; overflow: hidden; }
+  header.hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 15% 20%, rgba(212,175,55,0.12), transparent 40%), radial-gradient(circle at 85% 80%, rgba(255,255,255,0.06), transparent 40%); pointer-events: none; }
+  header.hero .logo { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); padding: 8px 16px; border-radius: 999px; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 18px; position: relative; }
+  header.hero .logo .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent); }
+  header.hero h1 { font-size: 32px; margin: 0 0 10px; font-weight: 800; letter-spacing: -0.5px; position: relative; }
+  header.hero p { font-size: 16px; margin: 0 auto; max-width: 560px; color: rgba(255,255,255,0.85); position: relative; }
+  main { max-width: 860px; margin: 0 auto; padding: 28px 16px 12px; }
+  .section { background: var(--card); border-radius: 14px; box-shadow: 0 4px 24px rgba(10,31,68,0.06); border: 1px solid var(--border); padding: 26px 22px; margin-bottom: 22px; }
+  .section-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .section-number { flex-shrink: 0; width: 42px; height: 42px; border-radius: 10px; background: linear-gradient(135deg, var(--navy), var(--navy-light)); color: #fff; display: grid; place-items: center; font-weight: 800; font-size: 18px; }
+  .section-head h2 { font-size: 20px; margin: 0; color: var(--navy); font-weight: 800; letter-spacing: -0.2px; }
+  .section-head .sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .compare { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .compare { grid-template-columns: 1fr 1fr; } header.hero h1 { font-size: 40px; } }
+  .card { border: 1px solid var(--border); border-radius: 10px; padding: 16px; background: #fcfcfd; }
+  .card .tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; margin-bottom: 10px; }
+  .tag.before { background: #fce8e8; color: var(--danger); }
+  .tag.after { background: #e4f3e9; color: var(--success); }
+  .card.after { background: linear-gradient(180deg, #ffffff 0%, #f6f9ff 100%); border-color: #c9d6ef; box-shadow: 0 2px 10px rgba(10,31,68,0.06); }
+  .card p { margin: 0 0 10px; font-size: 14.5px; color: #2a3450; }
+  .stats { display: flex; gap: 14px; margin-top: 12px; flex-wrap: wrap; }
+  .stat { background: var(--navy); color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+  .stat.accent { background: var(--accent); color: var(--navy-dark); }
+  .timeline { display: flex; flex-direction: column; gap: 14px; }
+  .email { border: 1px solid var(--border); border-left: 4px solid var(--navy); border-radius: 10px; overflow: hidden; background: #fff; }
+  .email-header { background: #f0f3fa; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; border-bottom: 1px solid var(--border); }
+  .email-day { display: inline-flex; align-items: center; gap: 8px; background: var(--navy); color: #fff; font-size: 12px; font-weight: 700; padding: 5px 11px; border-radius: 999px; letter-spacing: 0.5px; }
+  .email-day::before { content: ""; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  .email-subject { font-weight: 700; color: var(--navy); font-size: 14px; flex: 1; min-width: 180px; }
+  .email-body { padding: 16px 18px; font-size: 14px; color: #2a3450; }
+  .email-body p { margin: 0 0 10px; }
+  .email-body p:last-child { margin-bottom: 0; }
+  .email-body .sig { color: var(--muted); font-size: 13px; font-style: italic; }
+  .caption-grid { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  .caption { border: 1px solid var(--border); border-radius: 12px; padding: 16px; background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%); }
+  .caption-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .platform { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--navy); letter-spacing: 0.4px; text-transform: uppercase; }
+  .platform .chip { width: 10px; height: 10px; border-radius: 3px; background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af); }
+  .platform.fb .chip { background: #1877f2; border-radius: 50%; }
+  .copy-btn { background: var(--navy); color: #fff; border: none; font-size: 11px; font-weight: 700; padding: 6px 10px; border-radius: 6px; letter-spacing: 0.5px; text-transform: uppercase; cursor: pointer; }
+  .caption-text { font-size: 14px; color: #2a3450; white-space: pre-wrap; line-height: 1.6; }
+  .hashtags { margin-top: 10px; font-size: 13px; color: var(--navy-light); font-weight: 600; }
+  .value { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); color: #fff; border-radius: 14px; padding: 24px 20px; text-align: center; margin: 28px 16px; max-width: 860px; margin-left: auto; margin-right: auto; border: 1px solid rgba(212,175,55,0.4); }
+  .value h3 { margin: 0 0 14px; font-size: 20px; color: var(--accent); letter-spacing: -0.2px; }
+  .value-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .value-stat strong { display: block; font-size: 24px; color: #fff; font-weight: 800; }
+  .value-stat span { font-size: 11px; color: rgba(255,255,255,0.8); letter-spacing: 0.4px; text-transform: uppercase; }
+  footer { background: var(--navy-dark); color: #fff; padding: 30px 20px 36px; text-align: center; margin-top: 30px; }
+  footer .ai-mark { display: inline-block; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 8px; }
+  footer h4 { margin: 0 0 6px; font-size: 18px; font-weight: 700; }
+  footer p { margin: 0; color: rgba(255,255,255,0.7); font-size: 13px; }
+  .divider { width: 40px; height: 3px; background: var(--accent); border-radius: 2px; margin: 14px auto; }
+  footer .contact-line { margin-top: 10px; font-size: 14px; color: rgba(255,255,255,0.9); }
+  footer .contact-line a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  Built specifically for <strong>Josh Brown Mortgage Team</strong> &mdash; Austin TX
+</div>
+
+<header class="hero">
+  <div class="logo"><span class="dot"></span> AI Automation Demo</div>
+  <h1>Every Lead Followed Up. Every Rate Question Answered.</h1>
+  <p>In the mortgage business, speed wins. AI handles your lead responses, rate inquiries, and pre-approval follow-ups automatically &mdash; so no borrower goes cold while you&rsquo;re closing another deal.</p>
+</header>
+
+<main>
+
+  <!-- SECTION 1: Pain Points -->
+  <section class="section">
+    <div class="section-head">
+      <div class="section-number">1</div>
+      <div>
+        <h2>The Mortgage Broker&rsquo;s Speed Problem</h2>
+        <div class="sub">Borrowers shop fast. The first lender to respond usually wins the deal.</div>
+      </div>
+    </div>
+    <div class="compare">
+      <div class="card">
+        <span class="tag before">Without AI &mdash; Today</span>
+        <p>A potential borrower submits a rate inquiry at 9PM on a Tuesday. You&rsquo;re with a client. By the time you respond the next morning, they&rsquo;ve already been pre-approved by someone else. You never even knew the lead existed until it was gone.</p>
+        <p>Referral partners send you leads that sit in your inbox for hours. In a competitive market, that&rsquo;s the difference between a closed loan and a lost commission.</p>
+      </div>
+      <div class="card after">
+        <span class="tag after">With AI &mdash; Automated</span>
+        <p>Every inquiry gets an immediate, professional response with next steps and a pre-qualification link. Referral leads are acknowledged and followed up on a schedule. Rate questions get helpful, accurate replies that build trust before the first call.</p>
+        <p>You wake up to warm leads, not cold ones.</p>
+        <div class="stats">
+          <span class="stat">Instant lead response</span>
+          <span class="stat accent">More closed loans</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: Automated Email Responses -->
+  <section class="section">
+    <div class="section-head">
+      <div class="section-number">2</div>
+      <div>
+        <h2>Automated Lead &amp; Borrower Email Sequences</h2>
+        <div class="sub">Professional follow-up that keeps every borrower moving through the pipeline.</div>
+      </div>
+    </div>
+    <div class="timeline">
+
+      <div class="email">
+        <div class="email-header">
+          <span class="email-day">Instant &middot; New Inquiry</span>
+          <span class="email-subject">Re: Current rates for a 30-year fixed in Austin</span>
+        </div>
+        <div class="email-body">
+          <p>Hi Amanda,</p>
+          <p>Thanks for reaching out to Josh Brown Mortgage Team! Current 30-year fixed rates in Austin are moving quickly, and I want to make sure you get the most accurate picture for your specific situation &mdash; credit, down payment, and loan amount all affect your rate.</p>
+          <p>The fastest way to get you real numbers is a quick 10-minute call. I have openings tomorrow morning and Thursday afternoon &mdash; which works better? Or use the link below to schedule at your convenience.</p>
+          <p>Looking forward to helping you get into your new home.</p>
+          <p class="sig">&mdash; Josh Brown Mortgage Team &middot; 4501 Spicewood Springs Rd, Austin TX</p>
+        </div>
+      </div>
+
+      <div class="email">
+        <div class="email-header">
+          <span class="email-day">Day 3 &middot; Pre-Approval Follow-Up</span>
+          <span class="email-subject">Your pre-approval &mdash; a few things that can speed things up</span>
+        </div>
+        <div class="email-body">
+          <p>Hi Amanda,</p>
+          <p>Just following up on your pre-approval application. To move things along quickly, the three things that typically speed up the process are: last two years of W-2s or tax returns, two recent pay stubs, and your last two bank statements.</p>
+          <p>If you&rsquo;ve already sent those, you&rsquo;re in great shape &mdash; I&rsquo;ll be in touch with your pre-approval letter within 24 hours. Any questions, just reply here.</p>
+          <p class="sig">&mdash; Josh Brown Mortgage Team</p>
+        </div>
+      </div>
+
+      <div class="email">
+        <div class="email-header">
+          <span class="email-day">Day 7 &middot; Market Update</span>
+          <span class="email-subject">Austin mortgage rates this week &mdash; what buyers need to know</span>
+        </div>
+        <div class="email-body">
+          <p>Hi Amanda,</p>
+          <p>A quick note: rates shifted slightly this week following the Fed&rsquo;s latest commentary. If you&rsquo;re still in the market, now is a good time to lock in before any further movement.</p>
+          <p>I can run updated numbers for your specific scenario in about 5 minutes. Want me to put together a quick comparison? Just reply and I&rsquo;ll have it to you same day.</p>
+          <p class="sig">&mdash; Josh Brown Mortgage Team</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 3: Social Media -->
+  <section class="section">
+    <div class="section-head">
+      <div class="section-number">3</div>
+      <div>
+        <h2>AI-Generated Social Media Content</h2>
+        <div class="sub">Rate updates, buyer tips, and referral-driving posts &mdash; ready to publish.</div>
+      </div>
+    </div>
+    <div class="caption-grid">
+
+      <div class="caption">
+        <div class="caption-head">
+          <span class="platform"><span class="chip"></span> Instagram &middot; Rate Update</span>
+          <button class="copy-btn" onclick="alert('Copied ✓')">Copy</button>
+        </div>
+        <div class="caption-text">Austin buyers: rates moved this week 📊
+
+If you&rsquo;ve been on the fence, this is worth a conversation. A small rate difference on a $450K loan can mean $150+ per month &mdash; that adds up fast.
+
+We work with first-time buyers, move-up buyers, and investors across North Austin. Fast pre-approvals, no runaround.
+
+DM us or tap the link in bio to get your free rate quote today.</div>
+        <div class="hashtags">#AustinMortgage #AustinHomebuyer #MortgageRates #AustinRealEstate #JoshBrownMortgage #ATX</div>
+      </div>
+
+      <div class="caption">
+        <div class="caption-head">
+          <span class="platform fb"><span class="chip"></span> Facebook &middot; Educational Post</span>
+          <button class="copy-btn" onclick="alert('Copied ✓')">Copy</button>
+        </div>
+        <div class="caption-text">3 things Austin homebuyers get wrong about pre-approval:
+
+1. They wait too long to get one (sellers won&rsquo;t even look at your offer without it)
+2. They think it takes weeks (we can get you a letter in 24 hours)
+3. They assume their credit score has to be perfect (it doesn&rsquo;t)
+
+If you&rsquo;re thinking about buying in Austin this year, let&rsquo;s talk. No pressure, no commitment &mdash; just real numbers for your situation.
+
+📍 4501 Spicewood Springs Rd, Austin TX</div>
+        <div class="hashtags">#AustinHomeBuying #MortgageTips #AustinTX #FirstTimeHomeBuyer #PreApproval</div>
+      </div>
+
+      <div class="caption">
+        <div class="caption-head">
+          <span class="platform"><span class="chip"></span> Instagram &middot; Referral Post</span>
+          <button class="copy-btn" onclick="alert('Copied ✓')">Copy</button>
+        </div>
+        <div class="caption-text">Know someone buying a home in Austin this year? 🏡
+
+Send them our way. We close fast, communicate clearly, and make the mortgage process as painless as it can be.
+
+We work with all loan types &mdash; conventional, FHA, VA, jumbo &mdash; and we&rsquo;re local, so we know the Austin market inside and out.
+
+Tag a friend who&rsquo;s house hunting 👇</div>
+        <div class="hashtags">#AustinRealtor #MortgageBroker #AustinHomes #HomeLoan #JoshBrownMortgage</div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<div class="value">
+  <h3>What This Means for Josh Brown Mortgage Team</h3>
+  <div class="value-stats">
+    <div class="value-stat"><strong>24/7</strong><span>Lead response</span></div>
+    <div class="value-stat"><strong>0</strong><span>Leads going cold</span></div>
+    <div class="value-stat"><strong>More</strong><span>Closed loans</span></div>
+  </div>
+</div>
+
+<footer>
+  <div class="ai-mark">&#9679; Powered by AI</div>
+  <h4>Ready to automate your mortgage pipeline?</h4>
+  <div class="divider"></div>
+  <p>Custom AI automation for small businesses in Austin, TX</p>
+  <p class="contact-line">Evan Gipson &mdash; <a href="tel:7373034474">(737) 303-4474</a> &middot; <a href="mailto:evangipson90@gmail.com">evangipson90@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Demo for Trend Property Management — Austin TX</title>
+<style>
+  :root {
+    --navy: #0a1f44;
+    --navy-dark: #061532;
+    --navy-light: #1a3a7a;
+    --accent: #d4af37;
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --text: #1a2238;
+    --muted: #5a6785;
+    --border: #e3e8f2;
+    --success: #1f7a3a;
+    --danger: #a33a3a;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  .banner { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); color: #fff; text-align: center; padding: 14px 16px; font-size: 14px; font-weight: 600; letter-spacing: 0.3px; border-bottom: 3px solid var(--accent); }
+  .banner strong { color: var(--accent); }
+  header.hero { background: var(--navy); color: #fff; padding: 40px 20px 48px; text-align: center; position: relative; overflow: hidden; }
+  header.hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 15% 20%, rgba(212,175,55,0.12), transparent 40%), radial-gradient(circle at 85% 80%, rgba(255,255,255,0.06), transparent 40%); pointer-events: none; }
+  header.hero .logo { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); padding: 8px 16px; border-radius: 999px; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 18px; position: relative; }
+  header.hero .logo .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent); }
+  header.hero h1 { font-size: 32px; margin: 0 0 10px; font-weight: 800; letter-spacing: -0.5px; position: relative; }
+  header.hero p { font-size: 16px; margin: 0 auto; max-width: 560px; color: rgba(255,255,255,0.85); position: relative; }
+  main { max-width: 860px; margin: 0 auto; padding: 28px 16px 12px; }
+  .section { background: var(--card); border-radius: 14px; box-shadow: 0 4px 24px rgba(10,31,68,0.06); border: 1px solid var(--border); padding: 26px 22px; margin-bottom: 22px; }
+  .section-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .section-number { flex-shrink: 0; width: 42px; height: 42px; border-radius: 10px; background: linear-gradient(135deg, var(--navy), var(--navy-light)); color: #fff; display: grid; place-items: center; font-weight: 800; font-size: 18px; }
+  .section-head h2 { font-size: 20px; margin: 0; color: var(--navy); font-weight: 800; letter-spacing: -0.2px; }
+  .section-head .sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .compare { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .compare { grid-template-columns: 1fr 1fr; } header.hero h1 { font-size: 40px; } }
+  .card { border: 1px solid var(--border); border-radius: 10px; padding: 16px; background: #fcfcfd; }
+  .card .tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; margin-bottom: 10px; }
+  .tag.before { background: #fce8e8; color: var(--danger); }
+  .tag.after { background: #e4f3e9; color: var(--success); }
+  .card.after { background: linear-gradient(180deg, #ffffff 0%, #f6f9ff 100%); border-color: #c9d6ef; box-shadow: 0 2px 10px rgba(10,31,68,0.06); position: relative; }
+  .card p { margin: 0 0 10px; font-size: 14.5px; color: #2a3450; }
+  .stats { display: flex; gap: 14px; margin-top: 12px; flex-wrap: wrap; }
+  .stat { background: var(--navy); color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+  .stat.accent { background: var(--accent); color: var(--navy-dark); }
+  .timeline { display: flex; flex-direction: column; gap: 14px; }
+  .email { border: 1px solid var(--border); border-left: 4px solid var(--navy); border-radius: 10px; overflow: hidden; background: #fff; }
+  .email-header { background: #f0f3fa; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; border-bottom: 1px solid var(--border); }
+  .email-day { display: inline-flex; align-items: center; gap: 8px; background: var(--navy); color: #fff; font-size: 12px; font-weight: 700; padding: 5px 11px; border-radius: 999px; letter-spacing: 0.5px; }
+  .email-day::before { content: ""; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  .email-subject { font-weight: 700; color: var(--navy); font-size: 14px; flex: 1; min-width: 180px; }
+  .email-body { padding: 16px 18px; font-size: 14px; color: #2a3450; }
+  .email-body p { margin: 0 0 10px; }
+  .email-body p:last-child { margin-bottom: 0; }
+  .email-body .sig { color: var(--muted); font-size: 13px; font-style: italic; }
+  .caption-grid { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  .caption { border: 1px solid var(--border); border-radius: 12px; padding: 16px; background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%); }
+  .caption-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .platform { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--navy); letter-spacing: 0.4px; text-transform: uppercase; }
+  .platform .chip { width: 10px; height: 10px; border-radius: 3px; background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af); }
+  .platform.fb .chip { background: #1877f2; border-radius: 50%; }
+  .copy-btn { background: var(--navy); color: #fff; border: none; font-size: 11px; font-weight: 700; padding: 6px 10px; border-radius: 6px; letter-spacing: 0.5px; text-transform: uppercase; cursor: pointer; }
+  .caption-text { font-size: 14px; color: #2a3450; white-space: pre-wrap; line-height: 1.6; }
+  .hashtags { margin-top: 10px; font-size: 13px; color: var(--navy-light); font-weight: 600; }
+  .value { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); color: #fff; border-radius: 14px; padding: 24px 20px; text-align: center; margin: 28px 16px; max-width: 860px; margin-left: auto; margin-right: auto; border: 1px solid rgba(212,175,55,0.4); }
+  .value h3 { margin: 0 0 14px; font-size: 20px; color: var(--accent); letter-spacing: -0.2px; }
+  .value-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .value-stat strong { display: block; font-size: 24px; color: #fff; font-weight: 800; }
+  .value-stat span { font-size: 11px; color: rgba(255,255,255,0.8); letter-spacing: 0.4px; text-transform: uppercase; }
+  footer { background: var(--navy-dark); color: #fff; padding: 30px 20px 36px; text-align: center; margin-top: 30px; }
+  footer .ai-mark { display: inline-block; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 8px; }
+  footer h4 { margin: 0 0 6px; font-size: 18px; font-weight: 700; }
+  footer p { margin: 0; color: rgba(255,255,255,0.7); font-size: 13px; }
+  .divider { width: 40px; height: 3px; background: var(--accent); border-radius: 2px; margin: 14px auto; }
+  footer .contact-line { margin-top: 10px; font-size: 14px; color: rgba(255,255,255,0.9); }
+  footer .contact-line a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  Built specifically for <strong>Trend Property Management</strong> &mdash; Austin TX
+</div>
+
+<header class="hero">
+  <div class="logo"><span class="dot"></span> AI Automation Demo</div>
+  <h1>Stop Drowning in Tenant Emails.</h1>
+  <p>AI handles your maintenance requests, lease inquiries, and tenant follow-ups automatically &mdash; so Michael can focus on growing the portfolio, not answering the same questions all day.</p>
+</header>
+
+<main>
+
+  <!-- SECTION 1: Pain Points -->
+  <section class="section">
+    <div class="section-head">
+      <div class="section-number">1</div>
+      <div>
+        <h2>The Problem Every Property Manager Knows</h2>
+        <div class="sub">The inbox that never empties &mdash; and the leads that go cold while you&rsquo;re in it.</div>
+      </div>
+    </div>
+    <div class="compare">
+      <div class="card">
+        <span class="tag before">Without AI &mdash; Today</span>
+        <p>Tenant emails pile up all day. Maintenance requests sit unanswered for hours. Prospective renters email about availability and never hear back in time &mdash; so they go with the next property on their list.</p>
+        <p>You&rsquo;re spending 2&ndash;3 hours a day just on email triage. That&rsquo;s time not spent on inspections, owner reports, or new acquisitions.</p>
+      </div>
+      <div class="card after">
+        <span class="tag after">With AI &mdash; Automated</span>
+        <p>Every inquiry gets an instant, professional reply within seconds. Maintenance requests are triaged and routed automatically. Prospective tenants get availability info and a showing link before they can close the tab.</p>
+        <p>You check in once a day, handle only the things that genuinely need a human, and leave the office on time.</p>
+        <div class="stats">
+          <span class="stat">2&ndash;3 hrs saved daily</span>
+          <span class="stat accent">Zero cold leads</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: Automated Email Responses -->
+  <section class="section">
+    <div class="section-head">
+      <div class="section-number">2</div>
+      <div>
+        <h2>Automated Tenant &amp; Prospect Email Responses</h2>
+        <div class="sub">Every message answered instantly, in your voice, 24/7.</div>
+      </div>
+    </div>
+    <div class="timeline">
+
+      <div class="email">
+        <div class="email-header">
+          <span class="email-day">Instant &middot; Prospect Inquiry</span>
+          <span class="email-subject">Re: Is the unit at Balcones Woods still available?</span>
+        </div>
+        <div class="email-body">
+          <p>Hi Marcus,</p>
+          <p>Great news &mdash; the 2-bedroom at <strong>5114 Balcones Woods Dr</strong> is still available! It&rsquo;s a quiet, well-maintained unit with in-unit laundry, covered parking, and easy access to 183 and the Domain.</p>
+          <p>I&rsquo;d love to get you scheduled for a tour. We have openings Thursday at 5PM or Saturday morning &mdash; which works better for you? You can also book directly at the link below.</p>
+          <p class="sig">&mdash; Trend Property Management &middot; 5114 Balcones Woods Dr Suite 307, Austin TX</p>
+        </div>
+      </div>
+
+      <div class="email">
+        <div class="email-header">
+          <span class="email-day">Instant &middot; Maintenance Request</span>
+          <span class="email-subject">Re: AC not cooling &mdash; Unit 204</span>
+        </div>
+        <div class="email-body">
+          <p>Hi Jennifer,</p>
+          <p>Thank you for letting us know. I&rsquo;ve logged your maintenance request for <strong>Unit 204</strong> and marked it as priority. Our HVAC technician will contact you within 24 hours to schedule a visit &mdash; typically same-day for cooling issues in summer.</p>
+          <p>In the meantime, if the unit becomes uncomfortable, please let us know and we&rsquo;ll arrange a temporary solution. We take care of our tenants.</p>
+          <p class="sig">&mdash; Trend Property Management</p>
+        </div>
+      </div>
+
+      <div class="email">
+        <div class="email-header">
+          <span class="email-day">Day 3 &middot; Prospect Follow-Up</span>
+          <span class="email-subject">Still thinking about Balcones Woods? A couple of things worth knowing.</span>
+        </div>
+        <div class="email-body">
+          <p>Hi Marcus,</p>
+          <p>Just checking in on the Balcones Woods unit. We had a few inquiries this week, so I wanted to give you first right of refusal before we open it up further.</p>
+          <p>Happy to answer any questions about the lease terms, pet policy, or the neighborhood. Reply here or call us directly &mdash; we&rsquo;re easy to reach.</p>
+          <p class="sig">&mdash; Trend Property Management</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 3: Social Media -->
+  <section class="section">
+    <div class="section-head">
+      <div class="section-number">3</div>
+      <div>
+        <h2>AI-Generated Social Media Content</h2>
+        <div class="sub">Vacancy posts, tenant tips, and community content &mdash; written and ready to post.</div>
+      </div>
+    </div>
+    <div class="caption-grid">
+
+      <div class="caption">
+        <div class="caption-head">
+          <span class="platform"><span class="chip"></span> Instagram &middot; Vacancy Post</span>
+          <button class="copy-btn" onclick="alert('Copied ✓')">Copy</button>
+        </div>
+        <div class="caption-text">NOW AVAILABLE in North Austin 🏠
+
+2BR / 2BA at Balcones Woods &mdash; in-unit laundry, covered parking, and a location that puts you 10 minutes from The Domain and 15 from downtown.
+
+We respond fast, we fix things fast, and we keep our properties in great shape. That&rsquo;s the Trend difference.
+
+DM us or tap the link in bio to schedule a tour this week.</div>
+        <div class="hashtags">#AustinApartments #NorthAustin #ForRent #BalconesWoods #AustinRentals #TrendPM</div>
+      </div>
+
+      <div class="caption">
+        <div class="caption-head">
+          <span class="platform fb"><span class="chip"></span> Facebook &middot; Community Post</span>
+          <button class="copy-btn" onclick="alert('Copied ✓')">Copy</button>
+        </div>
+        <div class="caption-text">Thinking about renting in North Austin? Here&rsquo;s what most people don&rsquo;t ask but should:
+
+✅ What&rsquo;s the average maintenance response time?
+✅ Is there 24/7 emergency contact?
+✅ How are lease renewals handled?
+
+At Trend Property Management, we answer all three with a yes &mdash; and we&rsquo;re happy to prove it. Message us to learn about our current availability at Balcones Woods Dr.</div>
+        <div class="hashtags">#AustinRentals #PropertyManagement #NorthAustin #RentingInAustin</div>
+      </div>
+
+      <div class="caption">
+        <div class="caption-head">
+          <span class="platform"><span class="chip"></span> Instagram &middot; Owner Outreach</span>
+          <button class="copy-btn" onclick="alert('Copied ✓')">Copy</button>
+        </div>
+        <div class="caption-text">Own a rental property in Austin and tired of managing it yourself? 🤔
+
+We handle everything &mdash; tenant screening, maintenance coordination, rent collection, and monthly owner reports. You collect the check. We do the work.
+
+Currently accepting new properties in North Austin. DM us or visit our website to learn more.</div>
+        <div class="hashtags">#AustinLandlord #PropertyManagement #PassiveIncome #AustinInvestor #TrendPropertyManagement</div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<div class="value">
+  <h3>What This Means for Trend Property Management</h3>
+  <div class="value-stats">
+    <div class="value-stat"><strong>15+ hrs</strong><span>Saved per week</span></div>
+    <div class="value-stat"><strong>100%</strong><span>Inquiries answered</span></div>
+    <div class="value-stat"><strong>24/7</strong><span>Tenant response time</span></div>
+  </div>
+</div>
+
+<footer>
+  <div class="ai-mark">&#9679; Powered by AI</div>
+  <h4>Ready to automate Trend Property Management?</h4>
+  <div class="divider"></div>
+  <p>Custom AI automation for small businesses in Austin, TX</p>
+  <p class="contact-line">Evan Gipson &mdash; <a href="tel:7373034474">(737) 303-4474</a> &middot; <a href="mailto:evangipson90@gmail.com">evangipson90@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

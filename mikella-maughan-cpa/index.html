@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Demo for Mikella Maughan CPA — Austin TX</title>
+<style>
+  :root {
+    --navy: #0a1f44;
+    --navy-dark: #061532;
+    --navy-light: #1a3a7a;
+    --accent: #d4af37;
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --text: #1a2238;
+    --muted: #5a6785;
+    --border: #e3e8f2;
+    --success: #1f7a3a;
+    --danger: #a33a3a;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  .banner { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); color: #fff; text-align: center; padding: 14px 16px; font-size: 14px; font-weight: 600; letter-spacing: 0.3px; border-bottom: 3px solid var(--accent); }
+  .banner strong { color: var(--accent); }
+  header.hero { background: var(--navy); color: #fff; padding: 40px 20px 48px; text-align: center; position: relative; overflow: hidden; }
+  header.hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 15% 20%, rgba(212,175,55,0.12), transparent 40%), radial-gradient(circle at 85% 80%, rgba(255,255,255,0.06), transparent 40%); pointer-events: none; }
+  header.hero .logo { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); padding: 8px 16px; border-radius: 999px; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 18px; position: relative; }
+  header.hero .logo .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent); }
+  header.hero h1 { font-size: 32px; margin: 0 0 10px; font-weight: 800; letter-spacing: -0.5px; position: relative; }
+  header.hero p { font-size: 16px; margin: 0 auto; max-width: 560px; color: rgba(255,255,255,0.85); position: relative; }
+  main { max-width: 860px; margin: 0 auto; padding: 28px 16px 12px; }
+  .section { background: var(--card); border-radius: 14px; box-shadow: 0 4px 24px rgba(10,31,68,0.06); border: 1px solid var(--border); padding: 26px 22px; margin-bottom: 22px; }
+  .section-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .section-number { flex-shrink: 0; width: 42px; height: 42px; border-radius: 10px; background: linear-gradient(135deg, var(--navy), var(--navy-light)); color: #fff; display: grid; place-items: center; font-weight: 800; font-size: 18px; }
+  .section-head h2 { font-size: 20px; margin: 0; color: var(--navy); font-weight: 800; letter-spacing: -0.2px; }
+  .section-head .sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .compare { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .compare { grid-template-columns: 1fr 1fr; } header.hero h1 { font-size: 40px; } }
+  .card { border: 1px solid var(--border); border-radius: 10px; padding: 16px; background: #fcfcfd; }
+  .card .tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; margin-bottom: 10px; }
+  .tag.before { background: #fce8e8; color: var(--danger); }
+  .tag.after { background: #e4f3e9; color: var(--success); }
+  .card.after { background: linear-gradient(180deg, #ffffff 0%, #f6f9ff 100%); border-color: #c9d6ef; box-shadow: 0 2px 10px rgba(10,31,68,0.06); }
+  .card p { margin: 0 0 10px; font-size: 14.5px; color: #2a3450; }
+  .stats { display: flex; gap: 14px; margin-top: 12px; flex-wrap: wrap; }
+  .stat { background: var(--navy); color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+  .stat.accent { background: var(--accent); color: var(--navy-dark); }
+  .timeline { display: flex; flex-direction: column; gap: 14px; }
+  .email { border: 1px solid var(--border); border-left: 4px solid var(--navy); border-radius: 10px; overflow: hidden; background: #fff; }
+  .email-header { background: #f0f3fa; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; border-bottom: 1px solid var(--border); }
+  .email-day { display: inline-flex; align-items: center; gap: 8px; background: var(--navy); color: #fff; font-size: 12px; font-weight: 700; padding: 5px 11px; border-radius: 999px; letter-spacing: 0.5px; }
+  .email-day::before { content: ""; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  .email-subject { font-weight: 700; color: var(--navy); font-size: 14px; flex: 1; min-width: 180px; }
+  .email-body { padding: 16px 18px; font-size: 14px; color: #2a3450; }
+  .email-body p { margin: 0 0 10px; }
+  .email-body p:last-child { margin-bottom: 0; }
+  .email-body .sig { color: var(--muted); font-size: 13px; font-style: italic; }
+  .caption-grid { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  .caption { border: 1px solid var(--border); border-radius: 12px; padding: 16px; background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%); }
+  .caption-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .platform { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--navy); letter-spacing: 0.4px; text-transform: uppercase; }
+  .platform .chip { width: 10px; height: 10px; border-radius: 3px; background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af); }
+  .platform.fb .chip { background: #1877f2; border-radius: 50%; }
+  .platform.li .chip { background: #0a66c2; border-radius: 2px; }
+  .copy-btn { background: var(--navy); color: #fff; border: none; font-size: 11px; font-weight: 700; padding: 6px 10px; border-radius: 6px; letter-spacing: 0.5px; text-transform: uppercase; cursor: pointer; }
+  .caption-text { font-size: 14px; color: #2a3450; white-space: pre-wrap; line-height: 1.6; }
+  .hashtags { margin-top: 10px; font-size: 13px; color: var(--navy-light); font-weight: 600; }
+  .value { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); color: #fff; border-radius: 14px; padding: 24px 20px; text-align: center; margin: 28px 16px; max-width: 860px; margin-left: auto; margin-right: auto; border: 1px solid rgba(212,175,55,0.4); }
+  .value h3 { margin: 0 0 14px; font-size: 20px; color: var(--accent); letter-spacing: -0.2px; }
+  .value-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .value-stat strong { display: block; font-size: 24px; color: #fff; font-weight: 800; }
+  .value-stat span { font-size: 11px; color: rgba(255,255,255,0.8); letter-spacing: 0.4px; text-transform: uppercase; }
+  footer { background: var(--navy-dark); color: #fff; padding: 30px 20px 36px; text-align: center; margin-top: 30px; }
+  footer .ai-mark { display: inline-block; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 8px; }
+  footer h4 { margin: 0 0 6px; font-size: 18px; font-weight: 700; }
+  footer p { margin: 0; color: rgba(255,255,255,0.7); font-size: 13px; }
+  .divider { width: 40px; height: 3px; background: var(--accent); border-radius: 2px; margin: 14px auto; }
+  footer .contact-line { margin-top: 10px; font-size: 14px; color: rgba(255,255,255,0.9); }
+  footer .contact-line a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  Built specifically for <strong>Mikella Maughan CPA</strong> &mdash; Austin TX
+</div>
+
+<header class="hero">
+  <div class="logo"><span class="dot"></span> AI Automation Demo</div>
+  <h1>Handle More Clients. Work Fewer Hours.</h1>
+  <p>As a solo CPA, your time is your inventory. AI handles your client intake, document request follow-ups, and appointment scheduling automatically &mdash; so Mikella can focus on the work that actually requires a CPA.</p>
+</header>
+
+<main>
+
+  <!-- SECTION 1: Pain Points -->
+  <section class="section">
+    <div class="section-head">
+      <div class="section-number">1</div>
+      <div>
+        <h2>The Solo CPA&rsquo;s Biggest Bottleneck</h2>
+        <div class="sub">Administrative overhead that eats into billable time &mdash; especially during tax season.</div>
+      </div>
+    </div>
+    <div class="compare">
+      <div class="card">
+        <span class="tag before">Without AI &mdash; Today</span>
+        <p>Tax season means 40+ client emails a day asking the same questions: "Did you get my documents?" "When will my return be ready?" "What do I need to bring?" You spend hours answering routine questions instead of preparing returns.</p>
+        <p>New client inquiries come in during busy periods and sit unanswered for days. Some of them don&rsquo;t wait.</p>
+      </div>
+      <div class="card after">
+        <span class="tag after">With AI &mdash; Automated</span>
+        <p>Every new inquiry gets an instant response with your intake checklist and a scheduling link. Document request reminders go out automatically. Status update emails send themselves. You answer only the questions that genuinely require your expertise.</p>
+        <p>You take on more clients without working more hours.</p>
+        <div class="stats">
+          <span class="stat">3+ hrs saved weekly</span>
+          <span class="stat accent">More capacity</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: Automated Email Responses -->
+  <section class="section">
+    <div class="section-head">
+      <div class="section-number">2</div>
+      <div>
+        <h2>Automated Client Intake &amp; Follow-Up Emails</h2>
+        <div class="sub">Professional, timely responses that reflect the quality of your practice.</div>
+      </div>
+    </div>
+    <div class="timeline">
+
+      <div class="email">
+        <div class="email-header">
+          <span class="email-day">Instant &middot; New Client Inquiry</span>
+          <span class="email-subject">Re: Looking for a CPA for my small business taxes</span>
+        </div>
+        <div class="email-body">
+          <p>Hi Kevin,</p>
+          <p>Thank you for reaching out to Mikella Maughan CPA! I work with small business owners throughout the Austin area and would be glad to help with your business taxes.</p>
+          <p>To get started, I&rsquo;ve attached a short intake form that helps me understand your situation before our first meeting. Once you complete it, we can schedule a 30-minute consultation &mdash; no charge for the initial call.</p>
+          <p>Looking forward to connecting.</p>
+          <p class="sig">&mdash; Mikella Maughan, CPA &middot; Barrington Oaks area, Austin TX</p>
+        </div>
+      </div>
+
+      <div class="email">
+        <div class="email-header">
+          <span class="email-day">Day 5 &middot; Document Request Reminder</span>
+          <span class="email-subject">Friendly reminder &mdash; a few documents still needed for your return</span>
+        </div>
+        <div class="email-body">
+          <p>Hi Kevin,</p>
+          <p>Just a quick reminder that I&rsquo;m still waiting on your Q4 bank statements and the 1099-NEC from your largest contractor. Once I have those, I can complete your return and get it to you for review within 5 business days.</p>
+          <p>If you&rsquo;ve already sent them and I missed them, please resend and I&rsquo;ll confirm receipt right away. Thanks for your patience!</p>
+          <p class="sig">&mdash; Mikella Maughan, CPA</p>
+        </div>
+      </div>
+
+      <div class="email">
+        <div class="email-header">
+          <span class="email-day">Ongoing &middot; Return Status Update</span>
+          <span class="email-subject">Your tax return &mdash; status update</span>
+        </div>
+        <div class="email-body">
+          <p>Hi Kevin,</p>
+          <p>Quick update: your 2025 business return is in review and on track to be ready for your signature by Friday, April 25. I&rsquo;ll send you a summary of the key numbers along with the final documents for your records.</p>
+          <p>If anything comes up before then, feel free to reply here. You&rsquo;re in good hands.</p>
+          <p class="sig">&mdash; Mikella Maughan, CPA</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 3: Social Media -->
+  <section class="section">
+    <div class="section-head">
+      <div class="section-number">3</div>
+      <div>
+        <h2>AI-Generated Social Media Content</h2>
+        <div class="sub">Tax tips, deadline reminders, and trust-building posts &mdash; written and ready to publish.</div>
+      </div>
+    </div>
+    <div class="caption-grid">
+
+      <div class="caption">
+        <div class="caption-head">
+          <span class="platform li"><span class="chip"></span> LinkedIn &middot; Authority Post</span>
+          <button class="copy-btn" onclick="alert('Copied ✓')">Copy</button>
+        </div>
+        <div class="caption-text">The most common mistake I see Austin small business owners make at tax time:
+
+They wait until April to think about their taxes.
+
+By then, it&rsquo;s too late to take advantage of most deductions. The business owners who pay the least in taxes are the ones who plan in Q4, not Q1.
+
+If you&rsquo;re a small business owner in Austin and you don&rsquo;t have a CPA reviewing your books quarterly, let&rsquo;s talk. A short planning conversation can save you thousands.
+
+&mdash; Mikella Maughan, CPA | Austin TX</div>
+        <div class="hashtags">#AustinCPA #SmallBusinessTax #TaxPlanning #AustinBusiness #AccountingTips</div>
+      </div>
+
+      <div class="caption">
+        <div class="caption-head">
+          <span class="platform fb"><span class="chip"></span> Facebook &middot; Seasonal Post</span>
+          <button class="copy-btn" onclick="alert('Copied ✓')">Copy</button>
+        </div>
+        <div class="caption-text">Tax deadline coming up? Don&rsquo;t panic &mdash; here&rsquo;s what to do right now:
+
+✅ Gather all 1099s and W-2s
+✅ Pull your business bank statements for the full year
+✅ List any major purchases or equipment you bought
+✅ Note any home office or vehicle use for business
+
+If you haven&rsquo;t filed yet and you&rsquo;re feeling behind, I can help. I still have a few openings for new clients this season.
+
+📍 Barrington Oaks area, Austin TX | DM me or comment below</div>
+        <div class="hashtags">#TaxSeason #AustinCPA #SmallBusiness #TaxHelp #AustinTX</div>
+      </div>
+
+      <div class="caption">
+        <div class="caption-head">
+          <span class="platform"><span class="chip"></span> Instagram &middot; Referral Post</span>
+          <button class="copy-btn" onclick="alert('Copied ✓')">Copy</button>
+        </div>
+        <div class="caption-text">Know a small business owner in Austin who dreads tax season? 😅
+
+Send them my way. I specialize in working with owner-operated businesses &mdash; real estate, consulting, service businesses, freelancers &mdash; and I keep the process as painless as possible.
+
+No big firm runaround. Just straightforward, personalized accounting from someone who actually knows your name.
+
+Tag a business owner who could use a good CPA 👇</div>
+        <div class="hashtags">#AustinCPA #TaxAccountant #SmallBusiness #AustinBusiness #MikellaMaughanCPA</div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<div class="value">
+  <h3>What This Means for Mikella Maughan CPA</h3>
+  <div class="value-stats">
+    <div class="value-stat"><strong>3+ hrs</strong><span>Saved per week</span></div>
+    <div class="value-stat"><strong>100%</strong><span>Inquiries answered</span></div>
+    <div class="value-stat"><strong>More</strong><span>Client capacity</span></div>
+  </div>
+</div>
+
+<footer>
+  <div class="ai-mark">&#9679; Powered by AI</div>
+  <h4>Ready to automate your CPA practice?</h4>
+  <div class="divider"></div>
+  <p>Custom AI automation for small businesses in Austin, TX</p>
+  <p class="contact-line">Evan Gipson &mdash; <a href="tel:7373034474">(737) 303-4474</a> &middot; <a href="mailto:evangipson90@gmail.com">evangipson90@gmail.com</a></p>
+</footer>
+
+</body>
+</html>
